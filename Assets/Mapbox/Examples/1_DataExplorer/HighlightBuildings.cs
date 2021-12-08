@@ -18,9 +18,9 @@
 
 		void Update()
 		{
-			if (Input.GetMouseButton(0))
+			if (OVRInput.GetDown(OVRInput.Button.Three))
 			{
-				ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+				ray = Camera.main.ScreenPointToRay(OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch));
 				if (groundPlane.Raycast(ray, out rayDistance))
 				{
 					pos = ray.GetPoint(rayDistance);
