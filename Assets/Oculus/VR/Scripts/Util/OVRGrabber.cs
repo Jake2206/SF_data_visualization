@@ -29,7 +29,7 @@ public class OVRGrabber : MonoBehaviour
     // easily observe broken physics simulation by, for example, moving the bottom cube of a stacked
     // tower and noting a complete loss of friction.
     [SerializeField]
-    protected bool m_parentHeldObject = false;
+    protected bool m_parentHeldObject = true;
 
 	// If true, this script will move the hand to the transform specified by m_parentTransform, using MovePosition in
 	// Update. This allows correct physics behavior, at the cost of some latency. In this usage scenario, you

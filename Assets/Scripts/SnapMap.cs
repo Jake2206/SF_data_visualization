@@ -7,38 +7,44 @@ public class SnapMap : MonoBehaviour
     /* If map collides with another map snap to other map when trigger is released
      * 
      */
-
     private bool snap;
-    private bool inHand;
-    private Transform otherMap;
+    Vector3 orig_pos;
+    Quaternion orig_rot;
+    private Transform child;
+    private GameObject mainMapParent;
+    private mainMap mm;
 
     // Start is called before the first frame update
     void Start()
     {
-        snap = false;
+        child = transform.GetChild(0);
+        child.gameObject.SetActive(false);
+        orig_pos = transform.position;
+        orig_rot = transform.rotation;
+        mainMapParent = GameObject.Find("Main map");
+        mm = mainMapParent.GetComponent<mainMap>();
     }
 
     private void Update()
     {
-        if ((snap && OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
-            || (snap && OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger)))
+        if (snap
+            && (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger)
+            || OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger)))
         {
-            transform.position = otherMap.transform.position;
-            transform.rotation = otherMap.transform.rotation;
+            transform.position = orig_pos;
+            transform.rotation = orig_rot;
+            child.gameObject.SetActive(false);
+            mm.setMaps();
         }
     }
+
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("collision!");
+        
         if (collider.gameObject.CompareTag("Map"))
         {
+            Debug.Log("Collision!");
             snap = true;
-            otherMap = collider.transform;
-            Debug.Log("collision!");
-        }
-        if (collider.gameObject.CompareTag("controller"))
-        {
-            inHand = true;
         }
     }
 
@@ -46,14 +52,10 @@ public class SnapMap : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Map"))
         {
+            Debug.Log("Exit!");
             snap = false;
-            otherMap = null;
-        }
-        if (collider.gameObject.CompareTag("controller"))
-        {
-            inHand = false;
+            child.gameObject.SetActive(true);
+            mm.setMaps();
         }
     }
-
-
 }
