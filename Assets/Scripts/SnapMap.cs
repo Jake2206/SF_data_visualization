@@ -9,36 +9,41 @@ public class SnapMap : MonoBehaviour
      */
 
     private bool snap;
-    private bool inHand;
     private Transform otherMap;
+    private GameObject combined;
+    private GameObject ems;
 
     // Start is called before the first frame update
     void Start()
     {
-        snap = false;
+        ems = GameObject.Find("Map all ems");
+        combined = GameObject.Find("Map all combined");
+        combined.SetActive(false);
     }
 
     private void Update()
     {
-        if ((snap && OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger))
-            || (snap && OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger)))
+        if (transform.parent && transform.parent.gameObject.CompareTag("controller")
+            && (OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger)
+            || OVRInput.GetUp(OVRInput.Button.SecondaryHandTrigger)))
         {
             transform.position = otherMap.transform.position;
             transform.rotation = otherMap.transform.rotation;
+            ems.SetActive(false);
+            combined.SetActive(true);
         }
     }
+
     private void OnTriggerEnter(Collider collider)
     {
-        Debug.Log("collision!");
+        
         if (collider.gameObject.CompareTag("Map"))
         {
-            snap = true;
-            otherMap = collider.transform;
-            Debug.Log("collision!");
-        }
-        if (collider.gameObject.CompareTag("controller"))
-        {
-            inHand = true;
+            //Debug.Log("collision!");
+            if (transform.parent && transform.parent.gameObject.CompareTag("controller"))
+            {
+                otherMap = collider.transform;
+            }
         }
     }
 
@@ -46,14 +51,13 @@ public class SnapMap : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Map"))
         {
-            snap = false;
-            otherMap = null;
-        }
-        if (collider.gameObject.CompareTag("controller"))
-        {
-            inHand = false;
+            if (transform.parent && transform.parent.gameObject.CompareTag("controller"))
+            {
+                //Debug.Log(transform.name);
+                ems.SetActive(true);
+                combined.SetActive(false);
+                otherMap = null;
+            }
         }
     }
-
-
 }
