@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//This script was adapted from the SnapMusic project that I (Jake) worked on last semester in 4172
 public class GogoSettings
 {
     public const float Alpha = 15.0f;
