@@ -2529,13 +2529,13 @@ MonoBehaviour:
       tileJsonData:
         tileJSONLoaded: 0
         LayerDisplayNames:
-        - NYC_zip_data_all-cpbzw1
-      _sourceType: 3
+        - 2017_ll-99rhif
+      _sourceType: 2
       sourceOptions:
-        isActive: 0
+        isActive: 1
         layerSource:
           Name: Mapbox Terrain
-          Id: jla2206.5qjjdglx
+          Id: jla2206.1z9nyw9t
           Modified: 
           UserName: 
       useOptimizedStyle: 0
@@ -2552,8 +2552,8 @@ MonoBehaviour:
           sourceId: 
           isActive: 1
           sublayerName: Total
-          geometryType: 2
-          layerName: NYC_zip_data_all-cpbzw1
+          geometryType: 0
+          layerName: 2017_ll-99rhif
           snapToTerrain: 1
           combineMeshes: 0
         lineGeometryOptions:
@@ -2563,15 +2563,15 @@ MonoBehaviour:
           JoinType: 1
           CapType: 1
         filterOptions:
-          _selectedLayerName: NYC_zip_data_all-cpbzw1
+          _selectedLayerName: 2017_ll-99rhif
           filters: []
           combinerType: 0
         extrusionOptions:
-          _selectedLayerName: NYC_zip_data_all-cpbzw1
+          _selectedLayerName: 2017_ll-99rhif
           extrusionType: 1
           extrusionGeometryType: 0
           propertyName: total count
-          propertyDescription: Number
+          propertyDescription: Unavailable in Selected Layer.
           minimumHeight: 0
           maximumHeight: 1
           extrusionScaleFactor: 5000
@@ -2605,7 +2605,7 @@ MonoBehaviour:
         performanceOptions:
           isEnabled: 0
           entityPerCoroutine: 0
-        honorBuildingIdSetting: 1
+        honorBuildingIdSetting: 0
         buildingsWithUniqueIds: 0
         moveFeaturePositionTo: 0
         MeshModifiers: []
