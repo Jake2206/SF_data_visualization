@@ -19,8 +19,8 @@ public class mainMap : MonoBehaviour
     void Start()
     {
         mainEmsMap.SetActive(false);
-        defaultText = "Aggregated and Normalized Data covering 2011-2016";
-        altText = "Aggregated and Normalized Stop and Frisk Data 2011-2016";
+        defaultText = "Aggregated and Normalized Data Covering 2011-2016 by Zip Code";
+        altText = "Aggregated and Normalized Stop and Frisk Data 2011-2016 by Zip Code";
     }
 
     public void setMaps()
@@ -59,5 +59,10 @@ public class mainMap : MonoBehaviour
         {
             mainSfMap.SetActive(true);
         }
+    }
+
+    public void setMaps(GameObject yearMap)
+    {
+        yearMap.SetActive(false);
     }
 }
