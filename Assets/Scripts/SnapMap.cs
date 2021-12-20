@@ -54,7 +54,7 @@ public class SnapMap : MonoBehaviour
         
         if (collider.gameObject.CompareTag("Map"))
         {
-            Debug.Log("Collision!");
+            //Debug.Log("Collision!");
             snap = true;
         }
     }
@@ -63,7 +63,7 @@ public class SnapMap : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Map"))
         {
-            Debug.Log("Exit!");
+            //Debug.Log("Exit!");
             snap = false;
             child.gameObject.SetActive(true);
             dataExplanation.enabled = true;
