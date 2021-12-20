@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SnapMap : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class SnapMap : MonoBehaviour
     Quaternion orig_rot;
     private Transform child;
     private GameObject mainMapParent;
+    public TextMeshProUGUI dataExplanation;
     private mainMap mm;
 
     // Start is called before the first frame update
@@ -23,6 +25,7 @@ public class SnapMap : MonoBehaviour
         orig_rot = transform.rotation;
         mainMapParent = GameObject.Find("Main map");
         mm = mainMapParent.GetComponent<mainMap>();
+        dataExplanation.enabled = false;
     }
 
     private void Update()
@@ -34,7 +37,15 @@ public class SnapMap : MonoBehaviour
             transform.position = orig_pos;
             transform.rotation = orig_rot;
             child.gameObject.SetActive(false);
-            mm.setMaps();
+            dataExplanation.enabled = false;
+            if (child.name.Contains("year"))
+            {
+                mm.setMaps(child.gameObject);
+            }
+            else
+            {
+                mm.setMaps();
+            }
         }
     }
 
@@ -55,6 +66,7 @@ public class SnapMap : MonoBehaviour
             Debug.Log("Exit!");
             snap = false;
             child.gameObject.SetActive(true);
+            dataExplanation.enabled = true;
             mm.setMaps();
         }
     }
